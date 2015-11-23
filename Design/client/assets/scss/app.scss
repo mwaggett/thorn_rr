@@ -5,6 +5,15 @@
 	background: $secondary-color;
 }
 
+div {
+	text-align:center;
+}
+
+.row {
+	position: relative;
+  top: 40%;
+  transform: translateY(-50%);
+}
 .menu-group {
 	background: $primary-color;
 	@include breakpoint(medium) {

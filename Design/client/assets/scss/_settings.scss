@@ -603,8 +603,8 @@
 //   title: 'title',
 // );
 
-$primary-color: #800000;
-$secondary-color: #00ffff;
+$primary-color: #2F291B;
+$secondary-color: #F5DF65;
 $body-background: $secondary-color;
 $breakpoints: (
   small: rem-calc(600),
@@ -613,6 +613,6 @@ $breakpoints: (
   xlarge: rem-calc(1400),
   xxlarge: rem-calc(1920),
 );
-$h1-font-size: rem-calc(80);
+$h1-font-size: rem-calc(100);
 $body-font-family: "brandon-grotesque", Helvetica, Arial, sans-serif;
 $header-font-family: "flood-std", Helvetica, sans-serif;
