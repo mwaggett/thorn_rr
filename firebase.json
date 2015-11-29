@@ -1,6 +1,6 @@
 {
   "firebase": "incandescent-torch-9625",
-  "public": "public",
+  "public": "public/build",
   "ignore": [
     "firebase.json",
     "**/.*",
