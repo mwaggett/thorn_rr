@@ -928,7 +928,7 @@ a, [ui-sref], [zf-open], [zf-close], [zf-toggle] {
   padding: 0.85em 1em;
   margin: 0 1rem 1rem 0;
   font-size: 0.9rem;
-  border-radius: 0; }
+  border-radius: 20px; }
 
 .button {
   font-size: 0.9rem;
@@ -1205,7 +1205,7 @@ a, [ui-sref], [zf-open], [zf-close], [zf-toggle] {
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  border-radius: 0;
+  border-radius: 20px;
   overflow: hidden;
   font-size: 0.9rem; }
   .button-group > li {
@@ -1242,7 +1242,7 @@ a, [ui-sref], [zf-open], [zf-close], [zf-toggle] {
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  border-radius: 0; }
+  border-radius: 20px; }
   .button-group > li {
     -webkit-flex: 0 0 auto;
         -ms-flex: 0 0 auto;
@@ -5781,7 +5781,7 @@ h1 {
   font-size: 5.625rem; }
 
 h2 {
-  font-size: 1.6875rem; }
+  font-size: 3.75rem; }
 
 h3 {
   font-size: 1.375rem; }
@@ -5906,7 +5906,7 @@ blockquote p {
   h1 {
     font-size: 6.25rem; }
   h2 {
-    font-size: 2.3125rem; }
+    font-size: 4.375rem; }
   h3 {
     font-size: 1.6875rem; }
   h4 {
@@ -6343,7 +6343,7 @@ blockquote p {
 div {
   text-align: center; }
 
-.row {
+#homepage {
   position: relative;
   top: 40%;
   -webkit-transform: translateY(-50%);
