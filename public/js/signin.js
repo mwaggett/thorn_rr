@@ -15,6 +15,13 @@ function getEmail(authData) {
 }
 
 $(document).ready(function() {
+  var authData = ref.getAuth();
+  if (authData) {
+    console.log("Authenticated user id: " + authData.uid + ", name: " + getName(authData));
+    currentUserId = authData.uid;
+    window.location.href = "feed";
+  }
+
   $("#login").click(function() {
     ref.authWithOAuthPopup("facebook", function(error, authData) {
       if (error) {
@@ -25,6 +32,7 @@ $(document).ready(function() {
           name: getName(authData),
           email: getEmail(authData)
         });
+        window.location.href = "feed";
       }
     }, {scope: "public_profile, email"});
   });
