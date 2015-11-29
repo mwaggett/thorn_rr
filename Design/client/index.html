@@ -11,6 +11,9 @@
     <script src="./assets/js/templates.js"></script>
     <script src="./assets/js/routes.js"></script>
     <script src="./assets/js/app.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+    <script src="js/signin.js"></script>
   </head>
   <body>
     <zf-offcanvas position="left" id="menu">
@@ -29,7 +32,7 @@
           <div class="menu-group-left">
             <ul class="primary condense menu-bar">
               <li class="show-small"><a class="offcanvas-toggle" zf-hard-toggle="menu">&equiv;</a></li>
-              <li class="show-all" ui-sref-active="is-active"><a ui-sref="feed"><strong>TBD</strong></a></li>
+              <li class="show-all" ui-sref-active="is-active"><a ui-sref="feed"><strong>Feed</strong></a></li>
               <li ui-sref-active="is-active"><a ui-sref="post">Post</a></li>
               <li ui-sref-active="is-active"><a ui-sref="settings">Settings</a></li>
               <li ui-sref-active="is-active"><a ui-sref="log out">Log Out</a></li>
