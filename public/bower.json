@@ -1,19 +1,13 @@
 {
-  "name": "foundation-apps-template",
-  "version": "1.1.0",
+  "name": "thornnew",
+  "description": "New Thorn Code",
+  "main": "index.html",
   "authors": [
-    "ZURB"
-  ],
-  "description": "Template project for Foundation for Apps by ZURB.",
-  "main": "gulpfile.js",
-  "keywords": [
-    "framework",
-    "angular",
-    "web",
-    "apps"
+    "Cole Sprague"
   ],
   "license": "MIT",
-  "homepage": "http://foundation.zurb.com",
+  "moduleType": [],
+  "homepage": "",
   "private": true,
   "ignore": [
     "**/.*",
@@ -23,6 +17,6 @@
     "tests"
   ],
   "dependencies": {
-    "foundation-apps": "~1.1.0"
+    "modernizr": "~3.2.0"
   }
 }
