@@ -1,1 +1,0 @@
-var foundationRoutes = [{"name":"feed","url":"/feed","animationIn":"slideInDown","animationOut":"slideOutRight","path":"templates/feed.html"},{"name":"home","url":"/","animationIn":"slideInDown","animationOut":"slideOutUp","path":"templates/home.html"}]; 

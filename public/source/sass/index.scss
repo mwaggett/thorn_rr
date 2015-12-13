@@ -1,0 +1,91 @@
+$brown: #3B2314;
+$yellow: #F5DF65;
+$body-font-family: "flood-std";
+$header-font-family: "flood-std";
+$h1-font-size: 7rem;
+
+
+.homeContainer {
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -37%);
+}
+
+.flexContainer {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+
+body {
+  text-align: center;
+  color: $brown;
+  font-family: "flood-std", Arial, sans-serif;
+  background-color: $yellow;
+}
+
+h1 {
+  font-size: $h1-font-size;
+  font-family: "flood-std", Arial, sans-serif;
+  color: $brown;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-family: "fira-sans-2",Arial, sans-serif;
+  font-weight: lighter;
+}
+
+.myButton {
+	background-color:$yellow;
+	-moz-border-radius:42px;
+	-webkit-border-radius:42px;
+	border-radius:42px;
+	border:1px solid $brown;
+	display:inline-block;
+	cursor:pointer;
+	color: $brown;
+	font-family:Arial;
+	font-size:17px;
+	padding:13px 15px;
+	text-decoration:none;
+}
+
+.buttonSquare {
+	background-color:$yellow;
+	border:1px solid $brown;
+	display:inline-block;
+	cursor:pointer;
+	color:$brown;
+	font-family:Arial;
+	font-size:17px;
+	padding:13px 15px;
+	text-decoration:none;
+}
+input {
+  width: 19em;
+  height: 27px;
+  padding:10px;
+  font-size: 17px;
+  background-color: $brown;
+  color: $yellow;
+  border:none;
+}
+::-webkit-input-placeholder {
+  color: $yellow;
+  font-family: Arial;
+  font-size:15px;
+
+}
+
+hr {
+  border:none;
+  border-top:3px dotted $brown;
+  border-style: none none dotted;
+  color: $brown;
+  background-color: $yellow;
+  height:1px;
+
+}

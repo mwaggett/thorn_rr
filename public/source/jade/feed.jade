@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    title= Thorn
+    link(rel='stylesheet', href='/style.css')
+    script(src="https://cdn.firebase.com/js/client/2.3.1/firebase.js")
+
+  body(class="flexContainer")
+    img(src= "http://i.imgur.com/fActht6.png" width="250px")
+    p Your Daily Source of Frustration
+    input(type="text", id="newPost", placeholder="OMG Becky Look at Her Butt").
+    a(id="submitPost",class='buttonSquare').
+      Submit Yo' Shit
+    hr
+    div(id="posts")
