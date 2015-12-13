@@ -1,8 +1,12 @@
 var ref = new Firebase("https://incandescent-torch-9625.firebaseio.com");
 var postsRef = ref.child('posts');
 
-var homeRef = "/#!";
-var feedRef = "/#!/feed";
+var homeRef = "/";
+var feedRef = "/feed.html";
+
+$(document).ready(function() {
+  loadScripts();
+});
 
 function loadScripts() {
   var loginButton = document.getElementById("login");
