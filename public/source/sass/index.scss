@@ -2,7 +2,7 @@ $brown: #3B2314;
 $yellow: #F5DF65;
 $body-font-family: "flood-std";
 $header-font-family: "flood-std";
-$h1-font-size: 7rem;
+$h1-font-size: 5rem;
 
 
 .homeContainer {
@@ -16,6 +16,12 @@ $h1-font-size: 7rem;
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+}
+
+.topRight {
+    position: fixed;
+    right: 0;
+    top: 0;
 }
 
 

@@ -7,10 +7,14 @@ html(lang="en")
     script(src="js/jquery-1.11.3.js")
     script(src='js/scripts.js')
 
-  body(class="flexContainer")
-    img(src= "http://i.imgur.com/fActht6.png" width="250px")
-    p Your Daily Source of Frustration
-    input(type="text", id="newPost", placeholder="OMG Becky Look at Her Butt").
-    a(id="submitPost",class='buttonSquare').
-      Submit Yo' Shit
-    div(id="posts")
+  body
+    div(class="topRight")
+      a(href="/logout.html" id="logOut",class='myButton').
+        Log Out
+    div(class="flexContainer")
+      img(src= "http://i.imgur.com/fActht6.png" width="250px")
+      p Your Daily Source of Frustration
+      input(type="text", id="newPost", placeholder="OMG Becky Look at Her Butt").
+      a(id="submitPost",class='buttonSquare').
+        Submit Yo' Shit
+      div(id="posts")
