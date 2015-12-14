@@ -29,7 +29,7 @@ $(document).ready(function() {
     }
   });
 
-  // GET POSTS + SUBMIT COMMENTS 
+  // GET POSTS + SUBMIT COMMENTS
   postsRef.on("value", function(snapshot) { //currently ordered with oldest at top
     $("#posts").empty();
     snapshot.forEach(function(post) {
@@ -64,5 +64,17 @@ function createPost(content, id) {
                         "<br>" +
                         "<input type='text' class='newComment' placeholder='Add comment'>" +
                         "<button class='submitComment'>Submit</button>" +
+                        "<div class='comments'></div>" +
                      "</div>");
+  commentsRef.orderByChild("post_id").equalTo(id).on("value", function(snapshot) {
+    $("#"+id+" > .comments").empty();
+    snapshot.forEach(function(comment) {
+      var commentContent = comment.val().text;
+      $("#"+id+" > .comments").append("<div class='comment'>" +
+                                        "<p class='content'>"+commentContent+"</p>" +
+                                      "</div>");
+    });
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
 }
