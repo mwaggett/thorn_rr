@@ -1,5 +1,6 @@
-$brown: #3B2314;
-$yellow: #F5DF65;
+$secondaryColor: #3B2314;
+$primaryColor: #e4e4e4;
+$postColor: #ededed;
 $body-font-family: "flood-std";
 $header-font-family: "flood-std";
 $h1-font-size: 5rem;
@@ -24,18 +25,44 @@ $h1-font-size: 5rem;
     top: 0;
 }
 
+.post {
+  background-color: $postColor;
+  padding: 1px 0px 1px 0px;
+  margin: 5px;
+  box-shadow: 1px 2px 2px #c6c6c6;
+  max-width: 475px;
+}
+
+.alignLeft {
+  float: left;
+  position: relative;
+  left:10px;
+  top: 5px;
+}
+.alignLeftBottom {
+  float: left;
+  position: relative;
+  left: -10px;
+  top: 30px;
+}
+
+.alignText {
+  text-align: left;
+  padding-left: 45px;
+}
+
 
 body {
   text-align: center;
-  color: $brown;
+  color: $secondaryColor;
   font-family: "flood-std", Arial, sans-serif;
-  background-color: $yellow;
+  background-color: $primaryColor;
 }
 
 h1 {
   font-size: $h1-font-size;
   font-family: "flood-std", Arial, sans-serif;
-  color: $brown;
+  color: $secondaryColor;
 }
 
 h2 {
@@ -45,53 +72,42 @@ h2 {
 }
 
 .myButton {
-	background-color:$yellow;
+	background-color:$primaryColor;
 	-moz-border-radius:42px;
 	-webkit-border-radius:42px;
 	border-radius:42px;
-	border:1px solid $brown;
+	border:1px solid $secondaryColor;
 	display:inline-block;
 	cursor:pointer;
-	color: $brown;
+	color: $secondaryColor;
 	font-family:Arial;
 	font-size:17px;
-	padding:13px 15px;
+	padding:9px 9px;
 	text-decoration:none;
 }
 
 .buttonSquare {
-	background-color:$yellow;
-	border:1px solid $brown;
-	display:inline-block;
+	background-color:$primaryColor;
+	border:1px solid $secondaryColor;
 	cursor:pointer;
-	color:$brown;
+	color:$secondaryColor;
 	font-family:Arial;
 	font-size:17px;
 	padding:13px 15px;
-	text-decoration:none;
 }
 input {
   width: 19em;
   height: 27px;
   padding:10px;
   font-size: 17px;
-  background-color: $brown;
-  color: $yellow;
+  background-color: $secondaryColor;
+  color: $primaryColor;
   border:none;
 }
 ::-webkit-input-placeholder {
-  color: $yellow;
+  color: $primaryColor;
   font-family: Arial;
   font-size:15px;
-
-}
-
-hr {
-  border:none;
-  border-top:3px dotted $brown;
-  border-style: none none dotted;
-  color: $brown;
-  background-color: $yellow;
-  height:1px;
+  text-align: center;
 
 }
