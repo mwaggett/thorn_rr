@@ -79,7 +79,6 @@ function loadFeedPage(submitPostButton) {
     snapshot.forEach(function(post) {
       var postContent = post.val().text;
       console.log(postContent)
-      var lineBreak = document.createElement("HR");
       var postDiv = document.createElement("DIV");
       postDiv.className = "post";
       var postParagraph = document.createElement("P");
@@ -87,7 +86,6 @@ function loadFeedPage(submitPostButton) {
       var postTextNode = document.createTextNode(postContent);
       postParagraph.appendChild(postTextNode);
       postDiv.appendChild(postParagraph);
-      postsDiv.appendChild(lineBreak);
       postsDiv.appendChild(postDiv);
     });
   }, function (errorObject) {
