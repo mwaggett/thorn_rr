@@ -65,7 +65,7 @@ $(document).ready(function() {
 });
 
 function createPost(content, id) {
-  $("#posts").append("<div class='post' id='"+id+"'>" +
+  $("#posts").prepend("<div class='post' id='"+id+"'>" +
                         "<img src='/images/heart.png' class='alignLeft' width='20px'>" +
                         "<img src='/images/poop.png' class='alignLeftBottom' width='20px'>" +
                         "<p class='content alignText'>"+content+"</p>" +
@@ -80,7 +80,7 @@ function createPost(content, id) {
       var commentContent = comment.val().text;
       var authorId = comment.val().author_id;
       usersRef.child(authorId).on("value", function(userSnapshot) {
-        $("#"+id+" > .comments").append("<div class='comment'>" +
+        $("#"+id+" > .comments").prepend("<div class='comment'>" +
                                           "<p class='author'>"+userSnapshot.val().name+"</p>" +
                                           "<p class='content'>"+commentContent+"</p>" +
                                         "</div>");
