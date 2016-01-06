@@ -71,7 +71,7 @@ function createPost(content, id) {
     snapshot.forEach(function(comment) {
       var commentContent = comment.val().text;
       $("#"+id+" > .comments").append("<div class='comment'>" +
-                                        "<p class='content'>"+commentContent+"</p>" +
+                                        "<p class='content alignText'>"+commentContent+"</p>" +
                                       "</div>");
     });
   }, function (errorObject) {
