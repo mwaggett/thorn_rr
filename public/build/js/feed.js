@@ -82,7 +82,7 @@ function createPost(content, id) {
       var commentContent = comment.val().text;
       var authorID = comment.val().author_id;
       usersRef.child(authorID).on("value", function(userSnapshot) {
-        $("#"+id+" > .comments").prepend("<div class='comment' id='"+commentID+"'>" +
+        $("#"+id+" > .comments").append("<div class='comment' id='"+commentID+"'>" +
                                           "<img src='/images/heart.png' class='heart alignLeft' onclick='toggleHeart(this)' width='15px'>" +
                                           "<img src='/images/poop.png' class='poop alignLeftBottom' onclick='togglePoop(this)' width='15px'>" +
                                           "<p class='author'>"+userSnapshot.val().name+"</p>" +
