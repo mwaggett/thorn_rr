@@ -61,7 +61,9 @@ $(document).ready(function() {
 
 function createPost(content, id) {
   $("#posts").append("<div class='post' id='"+id+"'>" +
-                        "<p class='content'>"+content+"</p>" +
+                        "<img src='/images/heart.png' class='alignLeft' width='20px'>" +
+                        "<img src='/images/poop.png' class='alignLeftBottom' width='20px'>" +
+                        "<p class='content alignText'>"+content+"</p>" +
                         "<br>" +
                         "<input type='text' class='newComment' placeholder='Add comment'>" +
                         "<button class='submitComment'>Submit</button>" +
