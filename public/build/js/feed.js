@@ -30,6 +30,12 @@ $(document).ready(function() {
     }
   });
 
+  $("#newPost").keyup(function(event) {
+    if (event.keyCode == 13) {
+      $("#submitPost").click();
+    }
+  });
+
   // GET POSTS + SUBMIT COMMENTS
   postsRef.on("value", function(snapshot) {
     $("#posts").empty();
@@ -50,6 +56,11 @@ $(document).ready(function() {
           $(".newComment").val("");
         } else {
           alert("You may not submit at blank comment!");
+        }
+      });
+      $("#"+postID+" > .newComment").keyup(function(event) {
+        if (event.keyCode == 13) {
+          $("#"+postID+" > .submitComment").click();
         }
       });
     });
