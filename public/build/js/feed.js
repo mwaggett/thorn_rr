@@ -57,6 +57,11 @@ $(document).ready(function() {
     console.log("The read failed: " + errorObject.code);
   });
 
+  $("#logOut").click(function() {
+    console.log("Logging out..");
+    ref.unauth();
+  });
+
 });
 
 function createPost(content, id) {
