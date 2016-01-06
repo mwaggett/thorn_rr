@@ -30,6 +30,12 @@ $(document).ready(function() {
     }
   });
 
+  $("#newPost").keyup(function(event) {
+    if (event.keyCode == 13) {
+      $("#submitPost").click();
+    }
+  });
+
   // GET POSTS + SUBMIT COMMENTS
   postsRef.on("value", function(snapshot) {
     $("#posts").empty();
@@ -50,6 +56,11 @@ $(document).ready(function() {
           $(".newComment").val("");
         } else {
           alert("You may not submit at blank comment!");
+        }
+      });
+      $("#"+postID+" > .newComment").keyup(function(event) {
+        if (event.keyCode == 13) {
+          $("#"+postID+" > .submitComment").click();
         }
       });
     });
@@ -82,7 +93,7 @@ function createPost(content, id) {
       var commentContent = comment.val().text;
       var authorID = comment.val().author_id;
       usersRef.child(authorID).on("value", function(userSnapshot) {
-        $("#"+id+" > .comments").prepend("<div class='comment' id='"+commentID+"'>" +
+        $("#"+id+" > .comments").append("<div class='comment' id='"+commentID+"'>" +
                                           "<img src='/images/heart.png' class='heart alignLeft' onclick='toggleHeart(this)' width='15px'>" +
                                           "<img src='/images/poop.png' class='poop alignLeftBottom' onclick='togglePoop(this)' width='15px'>" +
                                           "<p class='author'>"+userSnapshot.val().name+"</p>" +
