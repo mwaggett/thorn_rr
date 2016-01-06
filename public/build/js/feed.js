@@ -31,7 +31,7 @@ $(document).ready(function() {
   });
 
   // GET POSTS + SUBMIT COMMENTS
-  postsRef.on("value", function(snapshot) { //currently ordered with oldest at top
+  postsRef.on("value", function(snapshot) {
     $("#posts").empty();
     snapshot.forEach(function(post) {
       var postContent = post.val().text;
@@ -57,6 +57,7 @@ $(document).ready(function() {
     console.log("The read failed: " + errorObject.code);
   });
 
+  // LOG OUT
   $("#logOut").click(function() {
     console.log("Logging out..");
     ref.unauth();
@@ -66,8 +67,8 @@ $(document).ready(function() {
 
 function createPost(content, id) {
   $("#posts").prepend("<div class='post' id='"+id+"'>" +
-                        "<img src='/images/heart.png' class='alignLeft' width='20px'>" +
-                        "<img src='/images/poop.png' class='alignLeftBottom' width='20px'>" +
+                        "<img src='/images/heart.png' class='heart alignLeft' onclick='toggleHeart(this)' width='20px'>" +
+                        "<img src='/images/poop.png' class='poop alignLeftBottom' onclick='togglePoop(this)' width='20px'>" +
                         "<p class='content alignText'>"+content+"</p>" +
                         "<br>" +
                         "<input type='text' class='newComment' placeholder='Add comment'>" +
@@ -77,16 +78,35 @@ function createPost(content, id) {
   commentsRef.orderByChild("post_id").equalTo(id).on("value", function(snapshot) {
     $("#"+id+" > .comments").empty();
     snapshot.forEach(function(comment) {
+      var commentID = comment.key();
       var commentContent = comment.val().text;
-      var authorId = comment.val().author_id;
-      usersRef.child(authorId).on("value", function(userSnapshot) {
-        $("#"+id+" > .comments").prepend("<div class='comment'>" +
+      var authorID = comment.val().author_id;
+      usersRef.child(authorID).on("value", function(userSnapshot) {
+        $("#"+id+" > .comments").prepend("<div class='comment' id='"+commentID+"'>" +
+                                          "<img src='/images/heart.png' class='heart alignLeft' onclick='toggleHeart(this)' width='15px'>" +
+                                          "<img src='/images/poop.png' class='poop alignLeftBottom' onclick='togglePoop(this)' width='15px'>" +
                                           "<p class='author'>"+userSnapshot.val().name+"</p>" +
-                                          "<p class='content'>"+commentContent+"</p>" +
+                                          "<p class='commentContent alignText'>"+commentContent+"</p>" +
                                         "</div>");
       });
     });
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
+}
+
+function toggleHeart(heart) {
+  if ($(heart).attr("src") == "/images/heart.png") {
+    $(heart).attr("src", "/images/heartfull.png");
+  } else {
+    $(heart).attr("src", "/images/heart.png");
+  }
+}
+
+function togglePoop(poop) {
+  if ($(poop).attr("src") == "/images/poop.png") {
+    $(poop).attr("src", "/images/poopfull.png");
+  } else {
+    $(poop).attr("src", "/images/poop.png");
+  }
 }
