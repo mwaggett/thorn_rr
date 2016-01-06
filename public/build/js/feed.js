@@ -1,4 +1,5 @@
 var ref = new Firebase("https://incandescent-torch-9625.firebaseio.com");
+var usersRef = ref.child('users');
 var postsRef = ref.child('posts');
 var commentsRef = ref.child('comments');
 var homeRef = "/";
@@ -70,9 +71,13 @@ function createPost(content, id) {
     $("#"+id+" > .comments").empty();
     snapshot.forEach(function(comment) {
       var commentContent = comment.val().text;
-      $("#"+id+" > .comments").append("<div class='comment'>" +
-                                        "<p class='content alignText'>"+commentContent+"</p>" +
-                                      "</div>");
+      var authorId = comment.val().author_id;
+      usersRef.child(authorId).on("value", function(userSnapshot) {
+        $("#"+id+" > .comments").append("<div class='comment'>" +
+                                          "<p class='author'>"+userSnapshot.val().name+"</p>" +
+                                          "<p class='content'>"+commentContent+"</p>" +
+                                        "</div>");
+      });
     });
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
