@@ -1,9 +1,19 @@
 $secondaryColor: #3B2314;
 $primaryColor: #e4e4e4;
+$commentColor: #e6e6e6;
 $postColor: #ededed;
 $body-font-family: "flood-std";
 $header-font-family: "flood-std";
 $h1-font-size: 5rem;
+
+.author {
+  float: left;
+  font-weight: bold;
+  position: relative;
+  left:20px;
+  top: 5px;
+
+}
 
 
 .homeContainer {
@@ -25,6 +35,12 @@ $h1-font-size: 5rem;
     top: 0;
 }
 
+.comment {
+  padding-top: 20px;
+  border-bottom: 3px solid $postColor;
+  background-color: $commentColor;
+}
+
 .post {
   background-color: $postColor;
   padding: 1px 0px 1px 0px;
@@ -37,13 +53,13 @@ $h1-font-size: 5rem;
   float: left;
   position: relative;
   left:10px;
-  top: 5px;
+  top: 8px;
 }
 .alignLeftBottom {
   float: left;
   position: relative;
   left: -10px;
-  top: 30px;
+  top: 33px;
 }
 
 .alignText {
@@ -84,6 +100,26 @@ h2 {
 	font-size:17px;
 	padding:9px 9px;
 	text-decoration:none;
+}
+
+.submitComment {
+  background-color:$primaryColor;
+	border:1px solid $secondaryColor;
+	cursor:pointer;
+	color:$secondaryColor;
+	font-family:Arial;
+	font-size:12px;
+	padding:8px 8px;
+}
+
+.newComment {
+  width: 10em;
+  height: 15px;
+  padding: 8px 90px;
+  font-size: 12px;
+  background-color: $secondaryColor;
+  color: $primaryColor;
+  border:none;
 }
 
 .buttonSquare {
