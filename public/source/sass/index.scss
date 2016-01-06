@@ -6,12 +6,60 @@ $body-font-family: "flood-std";
 $header-font-family: "flood-std";
 $h1-font-size: 5rem;
 
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalDialog > div {
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	background: $secondaryColor;
+  color: $primaryColor;
+}
+
+.close {
+	background: $primaryColor;
+	color: $secondaryColor;
+	line-height: 25px;
+	position: absolute;
+	right: 0px;
+	text-align: center;
+  top: -0px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
 .author {
   float: left;
   font-weight: bold;
   position: relative;
-  left:20px;
-  top: 5px;
+  left: 3%;
+  top: -30px;
 
 }
 
@@ -35,11 +83,19 @@ $h1-font-size: 5rem;
     top: 0;
 }
 
+
+.commentContent {
+	padding-left: -20px;
+	background-color: $commentColor;
+}
+
+
 .comment {
   padding-top: 20px;
   border-bottom: 3px solid $postColor;
   background-color: $commentColor;
 }
+
 
 .post {
   background-color: $postColor;
@@ -64,7 +120,7 @@ $h1-font-size: 5rem;
 
 .alignText {
   text-align: left;
-  padding-left: 45px;
+  padding-left: 12%;
 }
 
 
