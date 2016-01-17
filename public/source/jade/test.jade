@@ -8,9 +8,19 @@ html(lang="en")
     script(src='js/feed.js')
 
 body
-  a(href="#openModal") Open Modal
+  div(class ="page-wrap")
+    section(class="main-content" role="main")
+      a(class="buttonSquare" href="#openModal") Register with Facebook
 
-  div(id="openModal" class="modalDialog")
-    div
-      a(href="#close" title="Close" class="close") x
-      h2 Modal Box
+      div(id="openModal" class="modalDialog")
+        div
+          a(href="#close" title="Close" class="close") x
+          h2 Join Our Cult
+          div(class = "wrapper")
+            input(type="text", id="newPost", placeholder="What's the Secret Password?").
+            a(id="submitPost",class='buttonSquare').
+              That's My Code
+          div(class = "wrapper")
+            input(type="text", id="newPost", placeholder="Put your Email Here and We'll let you know, maybe").
+            a(id="submitPost",class='buttonSquare').
+              give me one

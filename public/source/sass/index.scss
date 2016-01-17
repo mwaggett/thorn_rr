@@ -1,6 +1,6 @@
-$secondaryColor: #3B2314;
-$primaryColor: #e4e4e4;
-$commentColor: #e6e6e6;
+$secondaryColor: #FFFFFF;
+$primaryColor: #DCD0FF;
+$commentColor: #FFF;
 $postColor: #ededed;
 $body-font-family: "flood-std";
 $header-font-family: "flood-std";
@@ -13,7 +13,7 @@ $h1-font-size: 5rem;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: rgba(0,0,0,0.8);
+	background: rgba(0,0,0,0.3);
 	z-index: 99999;
 	opacity:0;
 	-webkit-transition: opacity 400ms ease-in;
@@ -28,17 +28,18 @@ $h1-font-size: 5rem;
 }
 
 .modalDialog > div {
-	width: 400px;
+	width: 600px;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
-	background: $secondaryColor;
-  color: $primaryColor;
+	background: $primaryColor;
+  color: $secondaryColor;
 }
 
+
 .close {
-	background: $primaryColor;
-	color: $secondaryColor;
+	background: $secondaryColor;
+	color: $primaryColor;
 	line-height: 25px;
 	position: absolute;
 	right: 0px;
@@ -47,12 +48,23 @@ $h1-font-size: 5rem;
 	width: 24px;
 	text-decoration: none;
 	font-weight: bold;
-	-moz-box-shadow: 1px 1px 3px #000;
-	-webkit-box-shadow: 1px 1px 3px #000;
-	box-shadow: 1px 1px 3px #000;
 }
 
-.close:hover { background: #00d9ff; }
+.close:hover {
+	background: #00d9ff;
+}
+
+#logo {
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+	width: 30%;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 .author {
   float: left;
@@ -72,9 +84,9 @@ $h1-font-size: 5rem;
 }
 
 .flexContainer {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
+	margin: auto;
+	width: 60%;
+  padding: 20px;
 }
 
 .topRight {
@@ -91,31 +103,37 @@ $h1-font-size: 5rem;
 
 
 .comment {
-  padding-top: 20px;
-  border-bottom: 3px solid $postColor;
+  padding-top: 25px;
+  border: 2px solid $primaryColor;
   background-color: $commentColor;
+	padding-bottom: 15px;
+	align: right;
+	font-size: 14px;
+}
+.wrapper {
+	width: 100%;
 }
 
-
 .post {
-  background-color: $postColor;
-  padding: 1px 0px 1px 0px;
+  background-color: #FFF;
+  padding: 5px 15px 10px 10px;
   margin: 5px;
   box-shadow: 1px 2px 2px #c6c6c6;
-  max-width: 475px;
+	color: $primaryColor;
+	font-size: 16px;
 }
 
 .alignLeft {
   float: left;
   position: relative;
-  left:10px;
+  left:3.8%;
   top: 8px;
 }
 .alignLeftBottom {
   float: left;
   position: relative;
-  left: -10px;
-  top: 33px;
+  //left: 20%;
+  top: 40px;
 }
 
 .alignText {
@@ -123,6 +141,18 @@ $h1-font-size: 5rem;
   padding-left: 12%;
 }
 
+@media only screen and (max-width: 1000px) {
+	.flexContainer {
+  	width: 80%;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+	.flexContainer {
+  	width: 100%;
+		padding: 0px;
+  }
+}
 
 body {
   text-align: center;
@@ -159,23 +189,29 @@ h2 {
 }
 
 .submitComment {
-  background-color:$primaryColor;
-	border:1px solid $secondaryColor;
+	position:relative;
+	top: -21px;
+  background-color:$secondaryColor;
+	border:2px solid $primaryColor;
 	cursor:pointer;
-	color:$secondaryColor;
+	color:$primaryColor;
 	font-family:Arial;
 	font-size:12px;
 	padding:8px 8px;
+	height: 32px;
+	float: right;
 }
 
 .newComment {
-  width: 10em;
-  height: 15px;
-  padding: 8px 90px;
-  font-size: 12px;
+	position:relative;
+	top: -21px;
+  width: 66%;
+	float: right;
+  height: 32px;
+  font-size: 20px;
   background-color: $secondaryColor;
   color: $primaryColor;
-  border:none;
+  border: 2px solid $primaryColor;
 }
 
 .buttonSquare {
@@ -189,12 +225,19 @@ h2 {
 }
 input {
   width: 19em;
-  height: 27px;
+  height: 47px;
   padding:10px;
-  font-size: 17px;
+  font-size: 15px;
   background-color: $secondaryColor;
   color: $primaryColor;
   border:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+	outline: none;
 }
 ::-webkit-input-placeholder {
   color: $primaryColor;
