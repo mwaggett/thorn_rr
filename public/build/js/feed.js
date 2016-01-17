@@ -41,6 +41,12 @@ $(document).ready(function() {
     var postContent = snapshot.val().text;
     var postID = snapshot.key();
     createPost(postContent, postID);
+    $("#"+postID+" > .heart").click(function() {
+      toggleHeart(this);
+    });
+    $("#"+postID+" > .poop").click(function() {
+      togglePoop(this);
+    });
     $("#"+postID+" > .submitComment").click(function() {
       var newCommentText = $("#"+postID+" > .newComment").val();
       if (newCommentText) {
@@ -73,8 +79,8 @@ $(document).ready(function() {
 
 function createPost(content, id) {
   $("#posts").prepend("<div class='post' id='"+id+"'>" +
-                        "<img src='/images/heart.png' class='heart alignLeft' onclick='toggleHeart(this)' width='20px'>" +
-                        "<img src='/images/poop.png' class='poop alignLeftBottom' onclick='togglePoop(this)' width='20px'>" +
+                        "<img src='/images/heart.png' class='heart alignLeft' width='20px'>" +
+                        "<img src='/images/poop.png' class='poop alignLeftBottom' width='20px'>" +
                         "<p class='content alignText'>"+content+"</p>" +
                         "<br>" +
                         "<input type='text' class='newComment' placeholder='Add comment'>" +
@@ -89,15 +95,13 @@ function createPost(content, id) {
       var authorID = comment.val().author_id;
       usersRef.child(authorID).on("value", function(userSnapshot) {
         $("#"+id+" > .comments").append("<div class='comment' id='"+commentID+"'>" +
-                                          "<img src='/images/heart.png' class='heart alignLeft' onclick='toggleHeart(this)' width='15px'>" +
-                                          "<img src='/images/poop.png' class='poop alignLeftBottom' onclick='togglePoop(this)' width='15px'>" +
+                                          "<img src='/images/heart.png' class='heart alignLeft' width='15px'>" +
+                                          "<img src='/images/poop.png' class='poop alignLeftBottom' width='15px'>" +
                                           "<p class='author'>"+userSnapshot.val().name+"</p>" +
                                           "<p class='commentContent alignText'>"+commentContent+"</p>" +
                                         "</div>");
       });
     });
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
   });
 }
 
