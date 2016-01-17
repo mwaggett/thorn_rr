@@ -37,35 +37,30 @@ $(document).ready(function() {
   });
 
   // GET POSTS + SUBMIT COMMENTS
-  postsRef.on("value", function(snapshot) {
-    $("#posts").empty();
-    snapshot.forEach(function(post) {
-      var postContent = post.val().text;
-      var postID = post.key();
-      createPost(postContent, postID);
-      $("#"+postID+" > .submitComment").click(function() {
-        var newCommentText = $("#"+postID+" > .newComment").val();
-        if (newCommentText) {
-          var currentTime = new Date().getTime();
-          commentsRef.push().set({
-            author_id: currentUserId,
-            text: newCommentText,
-            post_id: postID,
-            created_at: currentTime
-          });
-          $(".newComment").val("");
-        } else {
-          alert("You may not submit at blank comment!");
-        }
-      });
-      $("#"+postID+" > .newComment").keyup(function(event) {
-        if (event.keyCode == 13) {
-          $("#"+postID+" > .submitComment").click();
-        }
-      });
+  postsRef.on("child_added", function(snapshot, prevChildKey) {
+    var postContent = snapshot.val().text;
+    var postID = snapshot.key();
+    createPost(postContent, postID);
+    $("#"+postID+" > .submitComment").click(function() {
+      var newCommentText = $("#"+postID+" > .newComment").val();
+      if (newCommentText) {
+        var currentTime = new Date().getTime();
+        commentsRef.push().set({
+          author_id: currentUserId,
+          text: newCommentText,
+          post_id: postID,
+          created_at: currentTime
+        });
+        $(".newComment").val("");
+      } else {
+        alert("You may not submit at blank comment!");
+      }
     });
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
+    $("#"+postID+" > .newComment").keyup(function(event) {
+      if (event.keyCode == 13) {
+        $("#"+postID+" > .submitComment").click();
+      }
+    });
   });
 
   // LOG OUT
