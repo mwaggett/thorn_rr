@@ -87,19 +87,22 @@ function createPost(content, id) {
                         "<button class='submitComment'>Submit</button>" +
                         "<div class='comments'></div>" +
                      "</div>");
-  commentsRef.orderByChild("post_id").equalTo(id).on("value", function(snapshot) {
-    $("#"+id+" > .comments").empty();
-    snapshot.forEach(function(comment) {
-      var commentID = comment.key();
-      var commentContent = comment.val().text;
-      var authorID = comment.val().author_id;
-      usersRef.child(authorID).on("value", function(userSnapshot) {
-        $("#"+id+" > .comments").append("<div class='comment' id='"+commentID+"'>" +
-                                          "<img src='/images/heart.png' class='heart alignLeft' width='15px'>" +
-                                          "<img src='/images/poop.png' class='poop alignLeftBottom' width='15px'>" +
-                                          "<p class='author'>"+userSnapshot.val().name+"</p>" +
-                                          "<p class='commentContent alignText'>"+commentContent+"</p>" +
-                                        "</div>");
+  commentsRef.orderByChild("post_id").equalTo(id).on("child_added", function(snapshot, prevChildKey) {
+    var commentID = snapshot.key();
+    var commentContent = snapshot.val().text;
+    var authorID = snapshot.val().author_id;
+    usersRef.child(authorID).on("value", function(userSnapshot) {
+      $("#"+id+" > .comments").append("<div class='comment' id='"+commentID+"'>" +
+                                        "<img src='/images/heart.png' class='heart alignLeft' width='15px'>" +
+                                        "<img src='/images/poop.png' class='poop alignLeftBottom' width='15px'>" +
+                                        "<p class='author'>"+userSnapshot.val().name+"</p>" +
+                                        "<p class='commentContent alignText'>"+commentContent+"</p>" +
+                                      "</div>");
+      $("#"+commentID+" > .heart").click(function() {
+        toggleHeart(this);
+      });
+      $("#"+commentID+" > .poop").click(function() {
+        togglePoop(this);
       });
     });
   });
