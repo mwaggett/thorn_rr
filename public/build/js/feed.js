@@ -43,9 +43,11 @@ $(document).ready(function() {
     createPost(postContent, postID);
     $("#"+postID+" > .heart").click(function() {
       toggleHeart(this);
+      heartPost(postID, currentUserId);
     });
     $("#"+postID+" > .poop").click(function() {
       togglePoop(this);
+      poopPost(postID, currentUserId);
     });
     $("#"+postID+" > .submitComment").click(function() {
       var newCommentText = $("#"+postID+" > .newComment").val();
@@ -122,4 +124,14 @@ function togglePoop(poop) {
   } else {
     $(poop).attr("src", "/images/poop.png");
   }
+}
+
+function heartPost(postID, userID) {
+  //toggle boolean
+  usersRef.child(userID).child("hearts").child(postID).set("true");
+}
+
+function poopPost(postID, userID) {
+  //toggle boolean
+  usersRef.child(userID).child("poops").child(postID).set("true");
 }
