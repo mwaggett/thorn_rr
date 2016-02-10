@@ -1,5 +1,5 @@
 $secondaryColor: #FFFFFF;
-$primaryColor: #DCD0FF;
+$primaryColor: #006bb3;
 $commentColor: #FFF;
 $postColor: #ededed;
 $body-font-family: "flood-std";
@@ -55,8 +55,6 @@ $h1-font-size: 5rem;
 }
 
 #logo {
-	opacity: 0.4;
-	filter: alpha(opacity=40);
 	width: 30%;
 }
 
@@ -119,21 +117,21 @@ $h1-font-size: 5rem;
   padding: 5px 15px 10px 10px;
   margin: 5px;
   box-shadow: 1px 2px 2px #c6c6c6;
-	color: $primaryColor;
+	color: #737373;
 	font-size: 16px;
 }
 
 .alignLeft {
   float: left;
   position: relative;
-  left:3.8%;
-  top: 8px;
+  //left:3.8%;
+  top: 50%;
 }
 .alignLeftBottom {
   float: left;
   position: relative;
   //left: 20%;
-  top: 40px;
+  top: 50%;
 }
 
 .alignText {
@@ -149,7 +147,7 @@ $h1-font-size: 5rem;
 
 @media only screen and (max-width: 640px) {
 	.flexContainer {
-  	width: 100%;
+  	width: 110%;
 		padding: 0px;
   }
 }
