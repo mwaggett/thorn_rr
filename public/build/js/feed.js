@@ -127,11 +127,23 @@ function togglePoop(poop) {
 }
 
 function heartPost(postID, userID) {
-  //toggle boolean
-  usersRef.child(userID).child("hearts").child(postID).set("true");
+  var heartRef = usersRef.child(userID).child("hearts").child(postID);
+  heartRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      heartRef.set(false);
+    } else {
+      heartRef.set(true);
+    }
+  });
 }
 
 function poopPost(postID, userID) {
-  //toggle boolean
-  usersRef.child(userID).child("poops").child(postID).set("true");
+  var poopRef = usersRef.child(userID).child("poops").child(postID);
+  poopRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      poopRef.set(false);
+    } else {
+      poopRef.set(true);
+    }
+  });
 }
