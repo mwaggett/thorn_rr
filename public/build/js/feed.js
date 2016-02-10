@@ -40,7 +40,7 @@ $(document).ready(function() {
   postsRef.on("child_added", function(snapshot, prevChildKey) {
     var postContent = snapshot.val().text;
     var postID = snapshot.key();
-    createPost(postContent, postID);
+    createPost(postContent, postID, currentUserId);
     $("#"+postID+" > .heart").click(function() {
       toggleHeart(this);
       heartPost(postID, currentUserId);
@@ -79,7 +79,7 @@ $(document).ready(function() {
 
 });
 
-function createPost(content, id) {
+function createPost(content, id, currentUserId) {
   $("#posts").prepend("<div class='post' id='"+id+"'>" +
                         "<img src='/images/heart.png' class='heart alignLeft' width='20px'>" +
                         "<img src='/images/poop.png' class='poop alignLeftBottom' width='20px'>" +
@@ -102,9 +102,11 @@ function createPost(content, id) {
                                       "</div>");
       $("#"+commentID+" > .heart").click(function() {
         toggleHeart(this);
+        heartPost(commentID, currentUserId);
       });
       $("#"+commentID+" > .poop").click(function() {
         togglePoop(this);
+        poopPost(commentID, currentUserId);
       });
     });
   });
