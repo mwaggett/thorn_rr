@@ -6,52 +6,27 @@ $body-font-family: "flood-std";
 $header-font-family: "flood-std";
 $h1-font-size: 5rem;
 
-.modalDialog {
-	position: fixed;
-	font-family: Arial, Helvetica, sans-serif;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(0,0,0,0.3);
-	z-index: 99999;
-	opacity:0;
-	-webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
-	pointer-events: none;
-}
-
-.modalDialog:target {
-	opacity:1;
-	pointer-events: auto;
-}
-
-.modalDialog > div {
-	width: 600px;
-	position: relative;
-	margin: 10% auto;
-	padding: 5px 20px 13px 20px;
-	background: $primaryColor;
-  color: $secondaryColor;
-}
-
-
-.close {
-	background: $secondaryColor;
+#bugReport {
+	height: 200px;
+	width: 500px;
+	word-wrap: normal;
+	padding:10px;
+	font-size: 15px;
+	background-color: $secondaryColor;
 	color: $primaryColor;
-	line-height: 25px;
-	position: absolute;
-	right: 0px;
-	text-align: center;
-  top: -0px;
-	width: 24px;
-	text-decoration: none;
-	font-weight: bold;
+	border:none;
+	resize: none;
 }
 
-.close:hover {
-	background: #00d9ff;
+#bugSend {
+	width: 20em;
+	background-color:$primaryColor;
+	border:1px solid $secondaryColor;
+	cursor:pointer;
+	color:$secondaryColor;
+	font-family:Arial;
+	font-size:17px;
+	padding:13px 190px;
 }
 
 #logo {
@@ -99,6 +74,22 @@ $h1-font-size: 5rem;
 	background-color: $commentColor;
 }
 
+.bottomRight {
+	position: fixed;
+	right: 20px;
+	bottom: 0;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#bugLink {
+	color: #FFF;
+	text-decoration: none;
+}
 
 .comment {
   padding-top: 25px;
@@ -188,7 +179,8 @@ h2 {
 
 .submitComment {
 	position:relative;
-	top: -21px;
+	top: -90%;
+	right: 20px;
   background-color:$secondaryColor;
 	border:2px solid $primaryColor;
 	cursor:pointer;
@@ -202,9 +194,9 @@ h2 {
 
 .newComment {
 	position:relative;
-	top: -21px;
-  width: 66%;
-	float: right;
+	top: -90%;
+  width: 90%;
+	float: left bottom;
   height: 32px;
   font-size: 20px;
   background-color: $secondaryColor;
