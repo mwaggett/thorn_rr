@@ -33,6 +33,12 @@ $h1-font-size: 5rem;
 	width: 30%;
 }
 
+#logOut {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -212,6 +218,7 @@ h2 {
 	font-family:Arial;
 	font-size:17px;
 	padding:13px 15px;
+	text-decoration: none;
 }
 input {
   width: 19em;
