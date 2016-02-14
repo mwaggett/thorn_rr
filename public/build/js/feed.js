@@ -4,13 +4,14 @@ var postsRef = ref.child('posts');
 var commentsRef = ref.child('comments');
 var homeRef = "/";
 var authData = ref.getAuth();
+var currentUserId;
 
 $(document).ready(function() {
   if (!authData) {
     console.log("User not logged in. Redirecting to login page...");
     window.location.href = homeRef;
   } else {
-    var currentUserId = authData.uid;
+    currentUserId = authData.uid;
     console.log("User " + currentUserId + " logged in.");
   }
 
@@ -40,7 +41,14 @@ $(document).ready(function() {
   postsRef.on("child_added", function(snapshot, prevChildKey) {
     var postContent = snapshot.val().text;
     var postID = snapshot.key();
-    createPost(postContent, postID);
+    createPost(postContent, postID, currentUserId);
+    addCommentsToPost(postID, currentUserId);
+    $("#"+postID+" > .heart").click(function() {
+      heartPost(postID, currentUserId);
+    });
+    $("#"+postID+" > .poop").click(function() {
+      poopPost(postID, currentUserId);
+    });
     $("#"+postID+" > .submitComment").click(function() {
       var newCommentText = $("#"+postID+" > .newComment").val();
       if (newCommentText) {
@@ -63,6 +71,18 @@ $(document).ready(function() {
     });
   });
 
+  //COLOR HEARTS AND POOPS
+  usersRef.child(currentUserId).child("hearts").on("value", function(snapshot) {
+    snapshot.forEach(function(post) {
+      colorHeart(post.key(), post.val());
+    });
+  });
+  usersRef.child(currentUserId).child("poops").on("value", function(snapshot) {
+    snapshot.forEach(function(post) {
+      colorPoop(post.key(), post.val());
+    });
+  });
+
   // LOG OUT
   $("#logOut").click(function() {
     console.log("Logging out..");
@@ -71,48 +91,184 @@ $(document).ready(function() {
 
 });
 
-function createPost(content, id) {
-  $("#posts").prepend("<div class='post' id='"+id+"'>" +
-                        "<img src='/images/heart.png' class='heart alignLeft' onclick='toggleHeart(this)' width='20px'>" +
-                        "<img src='/images/poop.png' class='poop alignLeftBottom' onclick='togglePoop(this)' width='20px'>" +
+function createPost(content, postID) {
+  $("#posts").prepend("<div class='post' id='"+postID+"'>" +
+                        "<img src='/images/heart.png' class='heart alignLeft' width='20px'>" +
+                        "<p class='heartCount'>"+postHeartCount(postID)+"</p>" +
+                        "<img src='/images/poop.png' class='poop alignLeftBottom' width='20px'>" +
+                        "<p class='poopCount'>"+postPoopCount(postID)+"</p>" +
                         "<p class='content alignText'>"+content+"</p>" +
                         "<br>" +
                         "<input type='text' class='newComment' placeholder='Add comment'>" +
                         "<button class='submitComment'>Submit</button>" +
                         "<div class='comments'></div>" +
                      "</div>");
-  commentsRef.orderByChild("post_id").equalTo(id).on("value", function(snapshot) {
-    $("#"+id+" > .comments").empty();
-    snapshot.forEach(function(comment) {
-      var commentID = comment.key();
-      var commentContent = comment.val().text;
-      var authorID = comment.val().author_id;
-      usersRef.child(authorID).on("value", function(userSnapshot) {
-        $("#"+id+" > .comments").append("<div class='comment' id='"+commentID+"'>" +
-                                          "<img src='/images/heart.png' class='heart alignLeft' onclick='toggleHeart(this)' width='15px'>" +
-                                          "<img src='/images/poop.png' class='poop alignLeftBottom' onclick='togglePoop(this)' width='15px'>" +
-                                          "<p class='author'>"+userSnapshot.val().name+"</p>" +
-                                          "<p class='commentContent alignText'>"+commentContent+"</p>" +
-                                        "</div>");
+}
+
+function addCommentsToPost(postID, currentUserId) {
+  commentsRef.orderByChild("post_id").equalTo(postID).on("child_added", function(snapshot, prevChildKey) {
+    var commentID = snapshot.key();
+    var commentContent = snapshot.val().text;
+    var authorID = snapshot.val().author_id;
+    usersRef.child(authorID).on("value", function(userSnapshot) {
+      $("#"+postID+" > .comments").append("<div class='comment' id='"+commentID+"'>" +
+                                        "<img src='/images/heart.png' class='heart alignLeft' width='15px'>" +
+                                        "<p class='heartCount'>"+commentHeartCount(commentID)+"</p>" +
+                                        "<img src='/images/poop.png' class='poop alignLeftBottom' width='15px'>" +
+                                        "<p class='poopCount'>"+commentPoopCount(commentID)+"</p>" +
+                                        "<p class='author'>"+userSnapshot.val().name+"</p>" +
+                                        "<p class='commentContent alignText'>"+commentContent+"</p>" +
+                                      "</div>");
+      $("#"+commentID+" > .heart").click(function() {
+        heartComment(commentID, currentUserId);
+      });
+      $("#"+commentID+" > .poop").click(function() {
+        poopComment(commentID, currentUserId);
       });
     });
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
   });
 }
 
-function toggleHeart(heart) {
-  if ($(heart).attr("src") == "/images/heart.png") {
-    $(heart).attr("src", "/images/heartfull.png");
+function colorHeart(postID, heartBool) {
+  if (heartBool) {
+    $("#"+postID+" > .heart").attr("src", "/images/heartfull.png");
   } else {
-    $(heart).attr("src", "/images/heart.png");
+    $("#"+postID+" > .heart").attr("src", "/images/heart.png");
   }
 }
 
-function togglePoop(poop) {
-  if ($(poop).attr("src") == "/images/poop.png") {
-    $(poop).attr("src", "/images/poopfull.png");
+function colorPoop(postID, poopBool) {
+  if (poopBool) {
+    $("#"+postID+" > .poop").attr("src", "/images/poopfull.png");
   } else {
-    $(poop).attr("src", "/images/poop.png");
+    $("#"+postID+" > .poop").attr("src", "/images/poop.png");
   }
+}
+
+function heartPost(postID, userID) {
+  var userHeartRef = usersRef.child(userID).child("hearts").child(postID);
+  userHeartRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      userHeartRef.set(false);
+    } else {
+      userHeartRef.set(true);
+    }
+  });
+  var postHeartRef = postsRef.child(postID).child("hearts").child(userID);
+  postHeartRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      postHeartRef.set(false);
+    } else {
+      postHeartRef.set(true);
+    }
+  });
+}
+
+function poopPost(postID, userID) {
+  var userPoopRef = usersRef.child(userID).child("poops").child(postID);
+  userPoopRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      userPoopRef.set(false);
+    } else {
+      userPoopRef.set(true);
+    }
+  });
+  var postPoopRef = postsRef.child(postID).child("poops").child(userID);
+  postPoopRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      postPoopRef.set(false);
+    } else {
+      postPoopRef.set(true);
+    }
+  });
+}
+
+function heartComment(commentID, userID) {
+  var userHeartRef = usersRef.child(userID).child("hearts").child(commentID);
+  userHeartRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      userHeartRef.set(false);
+    } else {
+      userHeartRef.set(true);
+    }
+  });
+  var commentHeartRef = commentsRef.child(commentID).child("hearts").child(userID);
+  commentHeartRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      commentHeartRef.set(false);
+    } else {
+      commentHeartRef.set(true);
+    }
+  });
+}
+
+function poopComment(commentID, userID) {
+  var userPoopRef = usersRef.child(userID).child("poops").child(commentID);
+  userPoopRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      userPoopRef.set(false);
+    } else {
+      userPoopRef.set(true);
+    }
+  });
+  var commentPoopRef = commentsRef.child(commentID).child("poops").child(userID);
+  commentPoopRef.once("value", function(snapshot) {
+    if (snapshot.val()) {
+      commentPoopRef.set(false);
+    } else {
+      commentPoopRef.set(true);
+    }
+  });
+}
+
+function postHeartCount(postID) {
+  var count = 0;
+  var postHeartsRef = postsRef.child(postID).child("hearts");
+  postHeartsRef.once("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val()) {
+        count++;
+      }
+    });
+  });
+  return count;
+}
+
+function postPoopCount(postID) {
+  var count = 0;
+  var postPoopsRef = postsRef.child(postID).child("poops");
+  postPoopsRef.once("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val()) {
+        count++;
+      }
+    });
+  });
+  return count;
+}
+
+function commentHeartCount(commentID) {
+  var count = 0;
+  var commentHeartsRef = commentsRef.child(commentID).child("hearts");
+ commentHeartsRef.once("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val()) {
+        count++;
+      }
+    });
+  });
+  return count;
+}
+
+function commentPoopCount(commentID) {
+  var count = 0;
+  var commentPoopsRef = commentsRef.child(commentID).child("poops");
+ commentPoopsRef.once("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val()) {
+        count++;
+      }
+    });
+  });
+  return count;
 }
