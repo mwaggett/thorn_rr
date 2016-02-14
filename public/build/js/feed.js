@@ -94,7 +94,9 @@ $(document).ready(function() {
 function createPost(content, postID) {
   $("#posts").prepend("<div class='post' id='"+postID+"'>" +
                         "<img src='/images/heart.png' class='heart alignLeft' width='20px'>" +
+                        "<p class='heartCount'>"+postHeartCount(postID)+"</p>" +
                         "<img src='/images/poop.png' class='poop alignLeftBottom' width='20px'>" +
+                        "<p class='poopCount'>"+postPoopCount(postID)+"</p>" +
                         "<p class='content alignText'>"+content+"</p>" +
                         "<br>" +
                         "<input type='text' class='newComment' placeholder='Add comment'>" +
@@ -111,7 +113,9 @@ function addCommentsToPost(postID, currentUserId) {
     usersRef.child(authorID).on("value", function(userSnapshot) {
       $("#"+postID+" > .comments").append("<div class='comment' id='"+commentID+"'>" +
                                         "<img src='/images/heart.png' class='heart alignLeft' width='15px'>" +
+                                        "<p class='heartCount'>"+commentHeartCount(commentID)+"</p>" +
                                         "<img src='/images/poop.png' class='poop alignLeftBottom' width='15px'>" +
+                                        "<p class='poopCount'>"+commentPoopCount(commentID)+"</p>" +
                                         "<p class='author'>"+userSnapshot.val().name+"</p>" +
                                         "<p class='commentContent alignText'>"+commentContent+"</p>" +
                                       "</div>");
@@ -215,4 +219,56 @@ function poopComment(commentID, userID) {
       commentPoopRef.set(true);
     }
   });
+}
+
+function postHeartCount(postID) {
+  var count = 0;
+  var postHeartsRef = postsRef.child(postID).child("hearts");
+  postHeartsRef.once("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val()) {
+        count++;
+      }
+    });
+  });
+  return count;
+}
+
+function postPoopCount(postID) {
+  var count = 0;
+  var postPoopsRef = postsRef.child(postID).child("poops");
+  postPoopsRef.once("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val()) {
+        count++;
+      }
+    });
+  });
+  return count;
+}
+
+function commentHeartCount(commentID) {
+  var count = 0;
+  var commentHeartsRef = commentsRef.child(commentID).child("hearts");
+ commentHeartsRef.once("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val()) {
+        count++;
+      }
+    });
+  });
+  return count;
+}
+
+function commentPoopCount(commentID) {
+  var count = 0;
+  var commentPoopsRef = commentsRef.child(commentID).child("poops");
+ commentPoopsRef.once("value", function(snapshot) {
+    snapshot.forEach(function(user) {
+      if (user.val()) {
+        count++;
+      }
+    });
+  });
+  return count;
 }
