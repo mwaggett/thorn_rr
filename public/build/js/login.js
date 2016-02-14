@@ -14,7 +14,7 @@ $(document).ready(function() {
         console.log("Login Failed!", error);
       } else if (authData) {
         console.log("Authenticated successfully with payload:", authData);
-        ref.child("users").child(authData.uid).set({
+        ref.child("users").child(authData.uid).update({
           name: getName(authData),
           email: getEmail(authData)
         });
