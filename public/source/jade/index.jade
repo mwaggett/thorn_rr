@@ -9,8 +9,12 @@ html(lang="en")
     script(src='js/login.js')
     script(src='js/register.js')
 
-  body(class='homeContainer')
-      img(src= "http://i.imgur.com/zeAmBEC.png" id="logoMain")
-      h2 A Website Designed to Piss You Off
-      a(href="#", id='login', class='buttonSquare').
-        Enter the Chamber of Secrets
+  body
+      div(class='homeContainer')
+        img(src= "http://i.imgur.com/zeAmBEC.png" id="logoMain")
+        h2 A Website Designed to Piss You Off
+        a(href="#", id='login', class='buttonSquare').
+          Enter the Chamber of Secrets
+      div(class="aboutAlign")
+        a(href="/about.html")
+          img(src= "/images/what-is-this-place.png" width="150px")
