@@ -14,7 +14,7 @@ $(document).ready(function() {
         console.log("Login Failed!", error);
       } else if (authData) {
         console.log("Authenticated successfully with payload:", authData);
-        ref.child("users").child(authData.uid).set({
+        ref.child("users").child(authData.uid).update({
           name: getName(authData),
           email: getEmail(authData)
         });
@@ -22,22 +22,6 @@ $(document).ready(function() {
       }
     }, {scope: "public_profile, email"});
   });
-
-  // var loginButton = document.getElementById("login");
-  // loginButton.addEventListener("click", function() {
-  //   ref.authWithOAuthPopup("facebook", function(error, authData) {
-  //     if (error) {
-  //       console.log("Login Failed!", error);
-  //     } else if (authData) {
-  //       console.log("Authenticated successfully with payload:", authData);
-  //       ref.child("users").child(authData.uid).set({
-  //         name: getName(authData),
-  //         email: getEmail(authData)
-  //       });
-  //       window.location.href = feedRef;
-  //     }
-  //   }, {scope: "public_profile, email"});
-  // });
 });
 
 function getName(authData) {
