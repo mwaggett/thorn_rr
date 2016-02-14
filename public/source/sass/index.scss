@@ -101,8 +101,29 @@ a:visited {
 	position: relative;
 	bottom: -110px;
 }
+
+.heartCount {
+	float: left;
+  position: relative;
+  left:13px;
+  top: -11px;
+}
+
+.poopCount {
+	float: left;
+	position: relative;
+	left: 35px;
+	top: -11px;
+}
 .aboutText {
 	width: 60%;
+	top: 200px;
+	//position: relative;
+	//transform: translateX(50%);
+}
+
+.loginPad {
+	top: 5000px;
 }
 .aboutAlign {
 	text-align: center;
@@ -154,8 +175,8 @@ a:visited {
 
 .alignComment {
   text-align: left;
-	padding-top: 0px;
-  padding-left: 20px;
+	padding-top: 10px;
+  padding-left: 75px;
 	padding-bottom: 0px;
 }
 
