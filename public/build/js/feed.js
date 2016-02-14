@@ -110,7 +110,7 @@ function addCommentsToPost(postID, currentUserId) {
     var commentID = snapshot.key();
     var commentContent = snapshot.val().text;
     var authorID = snapshot.val().author_id;
-    usersRef.child(authorID).on("value", function(userSnapshot) {
+    usersRef.child(authorID).once("value", function(userSnapshot) {
       $("#"+postID+" > .comments").append("<div class='comment' id='"+commentID+"'>" +
                                         "<img src='/images/heart.png' class='heart alignLeft' width='15px'>" +
                                         "<p class='heartCount'>"+commentHeartCount(commentID)+"</p>" +
