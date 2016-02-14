@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+  head
+    title= 'Thorn'
+    link(rel='stylesheet', href='/style.css')
+    script(src="https://cdn.firebase.com/js/client/2.3.1/firebase.js")
+    script(src="js/jquery-1.11.3.js")
+    script(src='js/feed.js')
+
+body
+  div(class ="page-wrap")
+    section(class="main-content" role="main")
+      a(href="/index.html")
+        img(src= "http://i.imgur.com/zeAmBEC.png" width="300px")
+      h2 What's the problem?
+      textarea(cols="40", rows="5", id="bugReport", placeholder="Type your bug in here and we will try our best to fix it...")
+    section(class="main-content")
+      a(id="bugSend")
+        Asshole Review My Bug
