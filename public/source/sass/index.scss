@@ -1,6 +1,6 @@
 $secondaryColor: #FFFFFF;
 $primaryColor: #006bb3;
-$commentColor: #FFF;
+$commentColor: #f0f8ff;
 $postColor: #ededed;
 $body-font-family: "flood-std";
 $header-font-family: "flood-std";
@@ -33,6 +33,12 @@ $h1-font-size: 5rem;
 	width: 30%;
 }
 
+#logOut {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -43,8 +49,8 @@ $h1-font-size: 5rem;
   float: left;
   font-weight: bold;
   position: relative;
-  left: 3%;
-  top: -30px;
+  left: -2%;
+  top: 10px;
 
 }
 
@@ -70,8 +76,7 @@ $h1-font-size: 5rem;
 
 
 .commentContent {
-	padding-left: -20px;
-	background-color: $commentColor;
+
 }
 
 .bottomRight {
@@ -91,13 +96,49 @@ a:visited {
 	text-decoration: none;
 }
 
+
+#aboutLink {
+	position: relative;
+	bottom: -110px;
+}
+
+.heartCount {
+	float: left;
+  position: relative;
+  left:13px;
+  top: -11px;
+}
+
+.poopCount {
+	float: left;
+	position: relative;
+	left: 35px;
+	top: -11px;
+}
+.aboutText {
+	width: 60%;
+	top: 200px;
+	//position: relative;
+	//transform: translateX(50%);
+}
+
+.loginPad {
+	top: 5000px;
+}
+.aboutAlign {
+	text-align: center;
+	position: fixed;
+	bottom: -10px;
+	width: 100%;
+}
+
 .comment {
-  padding-top: 25px;
-  border: 2px solid $primaryColor;
+  padding-top: 2px;
+  border-bottom: 1px solid $primaryColor;
   background-color: $commentColor;
 	padding-bottom: 15px;
-	align: right;
-	font-size: 14px;
+	//align: right;
+	font-size: 13px;
 }
 .wrapper {
 	width: 100%;
@@ -105,9 +146,9 @@ a:visited {
 
 .post {
   background-color: #FFF;
-  padding: 5px 15px 10px 10px;
-  margin: 5px;
-  box-shadow: 1px 2px 2px #c6c6c6;
+  padding: 3px 0px 0px 0px;
+  margin: 3px;
+  //box-shadow: 1px 2px 2px #c6c6c6;
 	color: #737373;
 	font-size: 16px;
 }
@@ -115,19 +156,28 @@ a:visited {
 .alignLeft {
   float: left;
   position: relative;
-  //left:3.8%;
-  top: 50%;
+  left:5px;
+  top: 5px;
 }
 .alignLeftBottom {
   float: left;
   position: relative;
-  //left: 20%;
-  top: 50%;
+  left: 25px;
+  top: 5px;
 }
 
 .alignText {
   text-align: left;
-  padding-left: 12%;
+	padding-top: 10px;
+  padding-left: 75px;
+	padding-bottom: 0px;
+}
+
+.alignComment {
+  text-align: left;
+	padding-top: 10px;
+  padding-left: 75px;
+	padding-bottom: 0px;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -162,27 +212,12 @@ h2 {
   font-weight: lighter;
 }
 
-.myButton {
-	background-color:$primaryColor;
-	-moz-border-radius:42px;
-	-webkit-border-radius:42px;
-	border-radius:42px;
-	border:1px solid $secondaryColor;
-	display:inline-block;
-	cursor:pointer;
-	color: $secondaryColor;
-	font-family:Arial;
-	font-size:17px;
-	padding:9px 9px;
-	text-decoration:none;
-}
-
 .submitComment {
 	position:relative;
 	top: -90%;
 	right: 20px;
   background-color:$secondaryColor;
-	border:2px solid $primaryColor;
+	border:1px solid $primaryColor;
 	cursor:pointer;
 	color:$primaryColor;
 	font-family:Arial;
@@ -195,13 +230,14 @@ h2 {
 .newComment {
 	position:relative;
 	top: -90%;
-  width: 90%;
+  width: 91%;
 	float: left bottom;
   height: 32px;
-  font-size: 20px;
+  font-size: 15px;
   background-color: $secondaryColor;
   color: $primaryColor;
-  border: 2px solid $primaryColor;
+  border: 1px solid $primaryColor;
+	text-align: left;
 }
 
 .buttonSquare {
@@ -212,6 +248,7 @@ h2 {
 	font-family:Arial;
 	font-size:17px;
 	padding:13px 15px;
+	text-decoration: none;
 }
 input {
   width: 19em;
@@ -221,6 +258,11 @@ input {
   background-color: $secondaryColor;
   color: $primaryColor;
   border:none;
+	text-align: left;
+}
+
+input.placeholder {
+	text-align: left;
 }
 
 input:focus,
