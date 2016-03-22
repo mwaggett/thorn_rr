@@ -1,27 +1,30 @@
-# Application Name
+# Thorn
 
-##### _{Brief description of application}, {Date of current version}_
+##### _Share Your Thoughts Anonymously, February 2016_
 
-#### By **Molly Waggett**
+#### By **Cole Sprague & Molly Waggett**
 
 ## Description
 
-{This is a detailed description of your application. Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. Do you want other developers to use this code in their apps? Talk about things like that here in simple terms.}
+Post your thoughts, feelings, secrets, and scandals completely anonymously.
+Like things anonymously.
+Post comments backed by your name.
 
 ## Setup
 
-* Clone this repository.
+* _Live site currently down due to inconsiderate users._
 
 ## Technologies Used
 
 * JavaScript
 * jQuery
-* Mocha
-* Chai
+* Firebase
+* Jade
+* Node
 
 ### Legal
 
-Copyright (c) 2015 **Molly Waggett**
+Copyright (c) 2015 **Thorn (Cole Sprague & Molly Waggett)**
 
 This software is licensed under the MIT license.
 
